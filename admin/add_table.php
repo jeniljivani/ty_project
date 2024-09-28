@@ -2,41 +2,35 @@
 
 require_once 'db.php';
 
-if(isset($_GET['id'])) {
+if (isset($_GET['id'])) {
    $id = $_GET['id'];
-   $select = "select * from `table_people` where `id`=".$id;
+   $select = "select * from `table_people` where `id`=" . $id;
    $res = mysqli_query($con, $select);
- 
-   $data = mysqli_fetch_assoc($res);  
- }
 
- if (isset($_POST['submit'])) {
+   $data = mysqli_fetch_assoc($res);
+}
+
+if (isset($_POST['submit'])) {
    $user_id = $_SESSION['user_id'];
    $table_number = $_POST['number'];
-   $table_people = $_POST['people'];
 
-   $cat_select = "select * from `table_people` where `table_number`='$table_number'";
-   $cat_res = mysqli_query($con , $cat_select);
-   $cat_rec = mysqli_num_rows($cat_res);
 
-   if(isset($_GET['id'])) 
-   {
-     $update = "update `table_people` set `table_number`='$table_number' , `table_people`='$table_people' where `id`=".$id;
-     mysqli_query($con, $update);
+   $cat_select = "select * from `tables` where `table_number`='$table_number'";
+   $cat_res = mysqli_query($con, $cat_select);
+   $cat_rec = mysqli_num_rows($cat_res); 
+   if ($cat_rec == 0) {
+      $insert = "insert into `tables`(`table_number` )values('$table_number' )";
+      mysqli_query($con, $insert);
+
+      header('location:add_table.php');
+   } else {
+      $error = "This table number already exits";
    }
-   else {
-     if($cat_rec==0) {
-       $insert = "insert into `table_people`(`table_number`,`table_people)values('$table_number','$table_people')";
-       mysqli_query($con ,$insert);
-     }
-     else
-     {
-       $error =" this table number already exits";
-     }
-   }
-   header("location:add_table.php");
- }
+}
 
+$table_select = "select * from `tables`";
+$table_res = mysqli_query($con, $table_select);
+$table_rec = mysqli_num_rows($table_res);
 
 
 include_once 'header.php';
@@ -83,20 +77,16 @@ include_once 'header.php';
                   </div>
                   <!-- /.card-header -->
                   <!-- form start -->
-                  <form method="post"  id="frm">
+                  <form method="post" id="frm">
 
                      <div class="card-body">
                         <div class="form-group">
                            <label for="exampleInputEmail1">Table number</label>
                            <input type="number" name="number" value="<?php echo @$data['table_number']; ?>" class="form-control" id="table" placeholder="Enter table">
+                           <span style="color: red;"><?php echo isset($error) ? $error : ''; ?></span>
                            <h6>Enter your table number</h6>
                         </div>
-                        <h5 style="color: red;"><?php echo @$error; ?></h5>
-                        <div class="form-group">
-                           <label for="exampleInputEmail1">Table people</label>
-                           <input type="number" name="people " value="<?php echo @$data['table_people ']; ?>" class="form-control" id="table" placeholder="Enter people ">
-                           <h6>Enter table people </h6>
-                        </div>
+
                      </div>
                      <!-- /.card-body -->
 
@@ -104,6 +94,26 @@ include_once 'header.php';
                         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                      </div>
                   </form>
+               </div>
+            </div>
+            <div class="col-md-6">
+               <!-- general form elements -->
+               <div class="card card-primary">
+                  <div class="card-header">
+                     <h3 class="card-title">Total Table</h3>
+                  </div>
+                  <!-- /.card-header -->
+
+                  <div class="card-body">
+                     <div class="d-flex ">
+                        <label for="exampleInputEmail1">Total table number :- </label>
+                        <h3 style=" margin-left: 15px; margin-top: -5px; "><?php echo $table_rec; ?></h3>
+                     </div>
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="card-footer">
+                  </div>
+
                </div>
             </div>
          </div>
@@ -115,7 +125,7 @@ include_once 'header.php';
 <!-- /.content-wrapper -->
 
 
-<script type="text/javascript" src="../../jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="jquery-3.7.1.min.js"></script>
 
 <script>
    $('#frm').submit(function() {

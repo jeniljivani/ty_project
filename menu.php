@@ -1,4 +1,18 @@
 <?php
+
+
+require_once 'admin/db.php';
+
+$date = date('Y-m-d');
+
+$table_number_select = "SELECT table_number FROM tables WHERE table_number NOT IN 
+        (SELECT table_number FROM reservations WHERE reservation_date = '$date' )";
+$table_number_res = mysqli_query($con, $table_number_select);
+
+$manu_select = "select * from menu ";
+$menu_res = mysqli_query($con, $manu_select);
+
+
 include_once 'header.php';
 ?>
 
@@ -23,377 +37,172 @@ include_once 'header.php';
          </div>
       </div>
       <div class="row">
-         <div class="col-md-6 col-lg-4 menu-wrap">
-            <div class="heading-menu text-center ftco-animate">
-               <h3>Breakfast</h3>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/breakfast-1.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Beef with potatoes</h3>
+         <?php
+         while ($menu = mysqli_fetch_assoc($menu_res)) {
+         ?>
+            <div class="col-md-6 col-lg-4 menu-wrap">
+               <div class="menus d-flex ftco-animate">
+                  <div class="menu-img img" style="background-image: url(admin/image/menu/<?= $menu['image'] ?>);"></div>
+                  <div class="text">
+                     <div class="d-flex">
+                        <div class="one-half">
+                           <h3><?= $menu['title'] ?></h3>
+                        </div>
+                        <div class="one-forth">
+                           <span class="price">$<?= $menu['price'] ?></span>
+                        </div>
                      </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
+                     <p><?= $menu['description'] ?></p>
                   </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
                </div>
             </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/breakfast-2.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/breakfast-3.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-         </div>
-
-         <div class="col-md-6 col-lg-4 menu-wrap">
-            <div class="heading-menu text-center ftco-animate">
-               <h3>Lunch</h3>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/lunch-1.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Beef with potatoes</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/lunch-2.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/lunch-3.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-         </div>
-
-         <div class="col-md-6 col-lg-4 menu-wrap">
-            <div class="heading-menu text-center ftco-animate">
-               <h3>Dinner</h3>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/dinner-1.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Beef with potatoes</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/dinner-2.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/dinner-3.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-         </div>
-
-         <!--  -->
-         <div class="col-md-6 col-lg-4 menu-wrap">
-            <div class="heading-menu text-center ftco-animate">
-               <h3>Desserts</h3>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/dessert-1.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Beef with potatoes</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/dessert-2.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/dessert-3.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-         </div>
-
-         <div class="col-md-6 col-lg-4 menu-wrap">
-            <div class="heading-menu text-center ftco-animate">
-               <h3>Wine Card</h3>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/wine-1.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Beef with potatoes</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/wine-2.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/wine-3.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-         </div>
-
-         <div class="col-md-6 col-lg-4 menu-wrap">
-            <div class="heading-menu text-center ftco-animate">
-               <h3>Drinks</h3>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/drink-1.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Beef with potatoes</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/drink-2.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-            <div class="menus d-flex ftco-animate">
-               <div class="menu-img img" style="background-image: url(images/drink-3.jpg);"></div>
-               <div class="text">
-                  <div class="d-flex">
-                     <div class="one-half">
-                        <h3>Grilled Crab with Onion</h3>
-                     </div>
-                     <div class="one-forth">
-                        <span class="price">$29</span>
-                     </div>
-                  </div>
-                  <p><span>Meat</span>, <span>Potatoes</span>, <span>Rice</span>, <span>Tomatoe</span></p>
-               </div>
-            </div>
-         </div>
+         <?php } ?>
+ 
       </div>
    </div>
 </section>
-
 <section class="ftco-section ftco-no-pt ftco-no-pb">
-   <div class="container-fluid px-0">
-      <div class="row d-flex no-gutters">
-         <div class="col-md-6 ftco-animate makereservation p-4 p-md-5 pt-5 pt-md-0">
-            <div class="heading-section ftco-animate mb-5">
-               <span class="subheading">Review</span>
-               <h2 class="mb-4">Review Restaurant</h2>
-            </div>
-            <form method="post" id="review-form" enctype="multipart/form-data">
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="">Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Your Name">
-                        <span id="name-error" style="display: none; color: red">Enter valid name</span>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
-                        <span id="email-error" style="display: none; color: red">Enter valid email</span>
-                     </div>
-                  </div>
-                  <div class="col-md-12">
-                     <div class="form-group">
-                        <label for="">Review</label>
-                        <textarea class="form-control" name="review" id="review" placeholder="Enter your review"></textarea>
-                        <span id="review-error" style="display: none; color: red">Enter valid review</span>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="">Your image</label>
-                        <input type="file" name="image" class="form-control" id="iamge" placeholder="image">
-                     </div>
-                  </div>
-                  <!-- <div class="col-md-6">
+	<div class="container-fluid px-0">
+		<div class="row d-flex  no-gutters">
+			<div class="container ftco-animate makereservation p-4 p-md-5 pt-5 pt-md-0">
+				<div class="heading-section ftco-animate mb-5 d-flex   justify-content-center">
+
+					<h2 class="mb-4">Make Reservation</h2>
+				</div>
+				<form method="post" id="review-form" enctype="multipart/form-data">
+					<div class="row">
+						<div class="col-md-6">
 							<div class="form-group">
-								<label for="">Person</label>
+								<label for="name">Name</label>
+								<input type="text" name="name" id="name" class="form-control " placeholder="Your Name">
+								<span id="name-error" style="display: none; color: red">Enter valid name</span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
+								<span id="email-error" style="display: none; color: red">Enter valid email</span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="phone">Phone</label>
+								<input type="text" name="phone" class="form-control" placeholder="Your Phone" id="phone">
+								<span id="phone-error" style="display: none; color: red">Enter valid phone number</span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="table_number">Table</label>
 								<div class="select-wrap one-third">
 									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="" id="" class="form-control">
-										<option value="">Person</option>
-										<option value="">1</option>
-										<option value="">2</option>
-										<option value="">3</option>
-										<option value="">4+</option>
+									<select name="table" class="form-control" id="table_number">
+										<option value="">Select table</option>
+										<?php
+										//   while ($table_number = mysqli_fetch_assoc($table_number_res)) {
+										//      echo '<option value="' . $table_number['table_number'] . '">' . $table_number['table_number'] . '</option>';
+										//   }
+										?>
 									</select>
+
 								</div>
 							</div>
-						</div> -->
-                  <div class="col-md-12 mt-3">
-                     <div class="form-group">
-                        <input type="submit" name="submit" value="Make a Reservation" class="btn btn-primary py-3 px-5">
-                     </div>
-                  </div>
-               </div>
-            </form>
-         </div>
-         <div class="col-md-6 d-flex align-items-stretch pb-5 pb-md-0">
-            <div id="map" class="border"></div>
-         </div>
-      </div>
-   </div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="time">Time</label>
+								<input type="time" name="time" class="form-control" id="time">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="date">Date</label>
+								<input type="date" name="date" class="form-control" id="date">
+							</div>
+						</div>
+
+						<div class="col-md-12 mt-3 d-flex justify-content-center">
+							<div class="form-group">
+								<input type="submit" name="submit" value="Make a Reservation" class="btn btn-primary py-3 px-5">
+							</div>
+						</div>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+	</div>
 </section>
- 
+
+<?php
+include_once 'footer.php';
+?>
 <script>
 	$(document).ready(function() {
+		document.getElementById('date').addEventListener('focus', function() {
+			this.showPicker(); // Opens the date picker when the field is focused (clicked)
+		});
+		document.getElementById('time').addEventListener('focus', function() {
+			this.showPicker(); // Opens the time picker when the field is clicked or focused
+		});
+		document.getElementById('phone').addEventListener('input', function(e) {
+			// Allow only numbers and an optional leading '+'
+			this.value = this.value.replace(/[^0-9+]/g, '');
+		});
+		window.onload = function() {
+			const now = new Date();
+			const hours = String(now.getHours()).padStart(2, '0');
+			const minutes = String(now.getMinutes()).padStart(2, '0');
+			const currentTime = `${hours}:${minutes}`;
+			document.getElementById('time').value = currentTime;
+
+
+			const today = new Date();
+			const year = today.getFullYear();
+			const month = String(today.getMonth() + 1).padStart(2, '0');
+			const day = String(today.getDate()).padStart(2, '0');
+			const currentDate = `${year}-${month}-${day}`;
+
+			const dateInput = document.getElementById('date');
+			dateInput.setAttribute('min', currentDate);
+			dateInput.setAttribute('value', currentDate); // Set default value to today's date
+
+		};
+		$("#date").change(function() {
+			var date = $("#date").val();
+			var time = $("#time").val();
+
+			if (date != "") {
+				$.ajax({
+					url: 'get_tables.php',
+					type: 'POST',
+					data: {
+						date: date,
+						time: time
+					},
+					success: function(response) {
+						console.log(response);
+
+						$("#table_number").html(response); // Update the table options
+					}
+				});
+			}
+		});
+
 		$('#review-form').submit(function(e) {
 			e.preventDefault();
 
 			var name = $('#name').val().trim();
 			var email = $('#email').val().trim();
-			var review = $('#review').val().trim();
+			var phone = $('#phone').val().trim();
 			var flag = true;
 
 			// Basic email pattern validation
 			var emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/;
+			var phonePattern = /^\+?[0-9]+$/;
+
 
 			if (name === '') {
 				$('#name-error').css('display', 'inline').html('Name is required.');
@@ -412,31 +221,30 @@ include_once 'header.php';
 				$('#email-error').css('display', 'none').html('');
 			}
 
-			if (review === '') {
-				$('#review-error').css('display', 'inline').html('Review is required.');
+
+			if (phone === '') {
+				$('#phone-error').css('display', 'inline').html('Phone number is required.');
+				flag = false;
+			} else if (!phonePattern.test(phone)) {
+				$('#phone-error').css('display', 'inline').html('Phone number can only contain numbers and an optional leading +.');
 				flag = false;
 			} else {
-				$('#review-error').css('display', 'none').html('');
+				$('#phone-error').css('display', 'none').html('');
 			}
 
 			if (!flag) {
-				 
 				return false;
 			} else {
 				var formdata = new FormData(this);
-				// formdata.append('name', name);
-				// formdata.append('email', email);
-				// formdata.append('review', review);
 
 				$.ajax({
 					type: 'POST',
-					url: 'send_review.php',
+					url: 'reservation_table.php',
 					data: formdata,
 					dataType: 'json',
 					processData: false,
 					contentType: false,
 					success: function(response) {
-						 
 						if (response.status === true) {
 							toastr.success(response.message);
 							// Optionally, you can clear the form or perform other actions here
@@ -444,17 +252,13 @@ include_once 'header.php';
 						} else {
 							toastr.error(response.message);
 						}
+					},
+					error: function(xhr, status, error) {
+						toastr.error('An error occurred: ' + error);
 					}
-					
 				});
-
-				 
 			}
 		});
+
 	});
 </script>
-
-
-<?php
-include_once 'footer.php';
-?>

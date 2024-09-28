@@ -29,7 +29,7 @@ if (isset($_GET['id'])) {
   $res = mysqli_query($con, $delete);
 }
 
-$limit = 2;
+$limit = 10;
 
 if (isset($_GET['page'])) {
   $page = $_GET['page'];

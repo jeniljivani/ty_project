@@ -29,7 +29,7 @@
      } 
   }
 
-  $limit = 2;
+  $limit = 10;
 
   if(isset($_GET['page'])) {
     $page = $_GET['page'];
@@ -89,13 +89,7 @@
                 <h3 class="card-title">View admin data</h3>
               </div>
               <!-- search -->
-              <div class=" ml-4 mt-2">
-                <form method="get">
-                  <label>Search name :-</label>
-                  <input type="text" name="search" placeholder="search name">
-                  <input type="submit"  name="submit" value="Search" class="btn btn-primary btn-sm">
-                </form>
-              </div>
+              
               <!-- /.card-header -->
               <div class="card-body">            
                 <h5 style="color: red"><?php echo @$msg ; ?></h5>

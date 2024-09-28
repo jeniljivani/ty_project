@@ -25,7 +25,7 @@
       }
   }
 
- $limit = 2;
+ $limit = 15;
 
   if(isset($_GET['page'])) {
     $page = $_GET['page'];
@@ -38,8 +38,8 @@
   if(isset($_GET['search']))
   {
     $search = $_GET['search'];
-    $sql_page = "select * from `menu` where titel like '%$search%'  limit $start , $limit";
-    $total_rec = "select * from `menu` where titel like '%$search%' ";
+    $sql_page = "select * from `menu` where title like '%$search%'  limit $start , $limit";
+    $total_rec = "select * from `menu` where title like '%$search%' ";
 
   }
   else {

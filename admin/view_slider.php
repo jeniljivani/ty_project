@@ -31,7 +31,7 @@ if (isset($_GET['id'])) {
   }
 }
 
-$limit = 2;
+$limit = 10;
 
 if (isset($_GET['page'])) {
   $page = $_GET['page'];

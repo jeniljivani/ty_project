@@ -47,78 +47,78 @@ include_once 'header.php';
 </section>
 
 <section class="ftco-section ftco-no-pt ftco-no-pb">
-   <div class="container-fluid px-0">
-      <div class="row d-flex no-gutters">
-         <div class="container ftco-animate makereservation p-4 p-md-5 pt-5 pt-md-0">
-            <div class="heading-section ftco-animate mb-5">
+	<div class="container-fluid px-0">
+		<div class="row d-flex no-gutters">
+			<div class="container ftco-animate makereservation p-4 p-md-5 pt-5 pt-md-0">
+				<div class="heading-section ftco-animate mb-5">
 
-               <h2 class="mb-4">ake ReservationM</h2>
-            </div>
-            <form method="post" id="review-form" enctype="multipart/form-data">
-               <div class="row">
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" name="name" id="name" class="form-control " placeholder="Your Name">
-                        <span id="name-error" style="display: none; color: red">Enter valid name</span>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
-                        <span id="email-error" style="display: none; color: red">Enter valid email</span>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="text" name="phone" class="form-control" placeholder="Your Phone" id="phone">
-                        <span id="phone-error" style="display: none; color: red">Enter valid phone number</span>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="table_number">Table</label>
-                        <div class="select-wrap one-third">
-                           <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-                           <select name="table" class="form-control" id="table_number">
-                              <option value="">Select table</option>
-                              <?php
-                            //   while ($table_number = mysqli_fetch_assoc($table_number_res)) {
-                            //      echo '<option value="' . $table_number['table_number'] . '">' . $table_number['table_number'] . '</option>';
-                            //   }
-                              ?>
-                           </select>
+					<h2 class="mb-4">Make ReservationM</h2>
+				</div>
+				<form method="post" id="review-form" enctype="multipart/form-data">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="name">Name</label>
+								<input type="text" name="name" id="name" class="form-control " placeholder="Your Name">
+								<span id="name-error" style="display: none; color: red">Enter valid name</span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
+								<span id="email-error" style="display: none; color: red">Enter valid email</span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="phone">Phone</label>
+								<input type="text" name="phone" class="form-control" placeholder="Your Phone" id="phone">
+								<span id="phone-error" style="display: none; color: red">Enter valid phone number</span>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="table_number">Table</label>
+								<div class="select-wrap one-third">
+									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+									<select name="table" class="form-control" id="table_number">
+										<option value="">Select table</option>
+										<?php
+										//   while ($table_number = mysqli_fetch_assoc($table_number_res)) {
+										//      echo '<option value="' . $table_number['table_number'] . '">' . $table_number['table_number'] . '</option>';
+										//   }
+										?>
+									</select>
 
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="time">Time</label>
-                        <input type="time" name="time" class="form-control" id="time">
-                     </div>
-                  </div>
-                  <div class="col-md-6">
-                     <div class="form-group">
-                        <label for="date">Date</label>
-                        <input type="date" name="date" class="form-control" id="date">
-                     </div>
-                  </div>
- 
-                  <div class="col-md-12 mt-3">
-                     <div class="form-group">
-                        <input type="submit" name="submit" value="Make a Reservation" class="btn btn-primary py-3 px-5">
-                     </div>
-                  </div>
-               </div>
-            </form>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="time">Time</label>
+								<input type="time" name="time" class="form-control" id="time">
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="date">Date</label>
+								<input type="date" name="date" class="form-control" id="date">
+							</div>
+						</div>
 
-         </div>
+						<div class="col-md-12 mt-3">
+							<div class="form-group">
+								<input type="submit" name="submit" value="Make a Reservation" class="btn btn-primary py-3 px-5">
+							</div>
+						</div>
+					</div>
+				</form>
 
-      </div>
-   </div>
+			</div>
+
+		</div>
+	</div>
 </section>
 
 <section class="ftco-section ftco-no-pt ftco-no-pb contact-section">

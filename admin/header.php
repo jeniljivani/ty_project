@@ -221,7 +221,7 @@ $user_data = mysqli_fetch_assoc($res);
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="add_adout.php" class="nav-link">
+                    <a href="add_about.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Add about</p>
                     </a>

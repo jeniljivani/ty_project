@@ -1,7 +1,7 @@
 <?php
 include 'db.php';
 
-$limit = 2;
+$limit = 10;
 
 if (isset($_GET['page'])) {
    $page = $_GET['page'];
@@ -199,7 +199,7 @@ include 'header.php';
 <!-- /.content-wrapper -->
 
 
-<script type="text/javascript" src="../../jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="jquery-3.7.1.min.js"></script>
 
 <script>
    $('#frm').submit(function() {

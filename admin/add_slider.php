@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+require_once 'db.php';
 
 
 if (isset($_GET['id'])) {
@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
 
 
 if (isset($_POST['submit'])) {
-  $user_id = $_SESSION['username'];
+  $user_id = $_SESSION['user_id'];
   $title = $_POST['title'];
   $image = $_FILES['image']['name'];
 
@@ -33,10 +33,12 @@ if (isset($_POST['submit'])) {
     $insert = "insert into `slider`(`title`,`image`)values('$title','$imagename')";
     mysqli_query($con, $insert);
   }
+
+  header("location:view_slider.php");
 }
 
 
-include 'header.php';
+include_once 'header.php';
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -114,32 +116,30 @@ include 'header.php';
 </div>
 <!-- /.content-wrapper -->
 
+<?php
+include_once 'footer.php';
+?>
 
-<script type="text/javascript" src="../../jquery-3.7.1.min.js"></script>
-
+<script type="text/javascript" src="jquery-3.7.1.min.js"></script>
 <script>
   $('#frm').submit(function() {
     var title = $('#title').val();
     if (title == '') {
-      // alert("please enter name");
-      $('#title').next('h6').css('display', 'inline');
+      $('#title').next('h6').css('display', 'inline').text('Please enter a title');
       return false;
+    } else {
+      $('#title').next('h6').css('display', 'none');
     }
-
 
     var image = $('#img').val();
-    var im = $('#fimg').attr('src');
-    if (im != "image/slider/") {
-      $('#img').val(im);
-    }
-    if (image == '') {
-      $('#img').next('h6').css('display', 'inline');
+    var im = $('#fimg').attr('src'); // Existing image if editing
+
+    // If no image is selected and no existing image is present, show an error
+    if (!image && !im) {
+      $('#img').next('h6').css('display', 'inline').text('Please upload a slider image');
       return false;
+    } else {
+      $('#img').next('h6').css('display', 'none');
     }
-
-
-  })
+  });
 </script>
-<?php
-include 'footer.php';
-?>

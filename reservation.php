@@ -88,7 +88,7 @@ include_once 'header.php';
 							</div>
 						</div>
 
-						<div class="col-md-12 mt-3">
+						<div class="col-md-12 mt-3 d-flex justify-content-center">
 							<div class="form-group">
 								<input type="submit" name="submit" value="Make a Reservation" class="btn btn-primary py-3 px-5">
 							</div>
@@ -101,7 +101,11 @@ include_once 'header.php';
 		</div>
 	</div>
 </section>
- 
+
+<?php
+include_once 'footer.php';
+?>
+
 <script>
 	$(document).ready(function() {
 		document.getElementById('date').addEventListener('focus', function() {
@@ -109,6 +113,10 @@ include_once 'header.php';
 		});
 		document.getElementById('time').addEventListener('focus', function() {
 			this.showPicker(); // Opens the time picker when the field is clicked or focused
+		});
+		document.getElementById('phone').addEventListener('input', function(e) {
+			// Allow only numbers and an optional leading '+'
+			this.value = this.value.replace(/[^0-9+]/g, '');
 		});
 		window.onload = function() {
 			const now = new Date();
@@ -160,7 +168,8 @@ include_once 'header.php';
 
 			// Basic email pattern validation
 			var emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com)$/;
-			var phonePattern = /^[0-9]+$/;
+			var phonePattern = /^\+?[0-9]+$/;
+
 
 			if (name === '') {
 				$('#name-error').css('display', 'inline').html('Name is required.');
@@ -179,11 +188,12 @@ include_once 'header.php';
 				$('#email-error').css('display', 'none').html('');
 			}
 
+
 			if (phone === '') {
 				$('#phone-error').css('display', 'inline').html('Phone number is required.');
 				flag = false;
 			} else if (!phonePattern.test(phone)) {
-				$('#phone-error').css('display', 'inline').html('Phone number can only contain numbers.');
+				$('#phone-error').css('display', 'inline').html('Phone number can only contain numbers and an optional leading +.');
 				flag = false;
 			} else {
 				$('#phone-error').css('display', 'none').html('');
@@ -219,8 +229,3 @@ include_once 'header.php';
 
 	});
 </script>
-
-
-<?php
-include_once 'footer.php';
-?>

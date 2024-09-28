@@ -14,7 +14,7 @@ $cat_res = mysqli_query($con, $cat_select);
 
 
 if (isset($_POST['submit'])) {
-    $user_id = $_SESSION['username'];
+    $user_id = $_SESSION['user_id'];
     $titel = $_POST['titel'];
     $description = $_POST['description'];
     $price = $_POST['price'];
@@ -147,7 +147,7 @@ include 'header.php';
 <!-- /.content-wrapper -->
 
 
-<script type="text/javascript" src="../../jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="jquery-3.7.1.min.js"></script>
 
 <script>
     $('#frm').submit(function() {
