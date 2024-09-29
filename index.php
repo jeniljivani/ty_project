@@ -218,7 +218,7 @@ include_once 'header.php';
                   </div>
                   <div class="col-md-6">
                      <div class="form-group">
-                        <label for="image">Upload Image</label>
+                        <label for="image">Your Image</label>
                         <input type="file" name="image" id="image" class="form-control" accept=".jpg, .jpeg, .png">
                         <span id="image-error" style="display: none; color: red">Only image files (jpg, png, jpeg) are allowed</span>
                      </div>

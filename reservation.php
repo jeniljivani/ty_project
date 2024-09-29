@@ -66,9 +66,9 @@ include_once 'header.php';
 									<select name="table" class="form-control" id="table_number">
 										<option value="">Select table</option>
 										<?php
-										//   while ($table_number = mysqli_fetch_assoc($table_number_res)) {
-										//      echo '<option value="' . $table_number['table_number'] . '">' . $table_number['table_number'] . '</option>';
-										//   }
+										  while ($table_number = mysqli_fetch_assoc($table_number_res)) {
+										     echo '<option value="' . $table_number['table_number'] . '">' . $table_number['table_number'] . '</option>';
+										  }
 										?>
 									</select>
 

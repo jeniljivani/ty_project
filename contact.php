@@ -24,166 +24,198 @@ include_once 'header.php';
 			<div class="w-100"></div>
 			<div class="col-md-3 d-flex">
 				<div class="dbox">
-					<p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+					<p><span>Address:</span><a> 198 Ring Road, Suite 721, Surat, Gujarat 395003</a></p>
 				</div>
 			</div>
 			<div class="col-md-3 d-flex">
 				<div class="dbox">
-					<p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+					<p><span>Phone:</span> <a href="tel://1234567920">+55115 17781</a></p>
 				</div>
 			</div>
 			<div class="col-md-3 d-flex">
 				<div class="dbox">
-					<p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+					<p><span>Email:</span> <a href="mailto:appetizer@gmail.com">appetizer@gmail.com</a></p>
 				</div>
 			</div>
 			<div class="col-md-3 d-flex">
 				<div class="dbox">
-					<p><span>Website</span> <a href="#">yoursite.com</a></p>
+					<p><span>Website</span> <a href="index.php">Appetizer.com</a></p>
 				</div>
 			</div>
 		</div>
 	</div>
+</section>
+
+
+
+<section class="ftco-section ftco-no-pt ftco-no-pb">
+   <div class="container-fluid px-0">
+      <div class="row d-flex no-gutters">
+         <div class="container ftco-animate makereservation p-4 p-md-5 pt-5 pt-md-0">
+            <div class="heading-section ftco-animate mb-5">
+               <h2 class="mb-4">Make Review</h2>
+            </div>
+            <form method="post" id="review-form" enctype="multipart/form-data">
+               <div class="row">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Your Name">
+                        <span id="name-error" style="display: none; color: red">Enter a valid name</span>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
+                        <span id="email-error" style="display: none; color: red">Enter a valid email</span>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="review">Review</label>
+                        <textarea name="review" id="review" class="form-control" placeholder="Your Review" rows="3"></textarea>
+                        <span id="review-error" style="display: none; color: red">Enter your review</span>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="image">Your Image</label>
+                        <input type="file" name="image" id="image" class="form-control" accept=".jpg, .jpeg, .png">
+                        <span id="image-error" style="display: none; color: red">Only image files (jpg, png, jpeg) are allowed</span>
+                     </div>
+                  </div>
+                  <div class="col-md-12 mt-3 d-flex justify-content-center">
+                     <div class="form-group">
+                        <input type="submit" name="submit" value="Submit Review" class="btn btn-primary py-3 px-5" id="submit-btn">
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
 </section>
 
 <section class="ftco-section ftco-no-pt ftco-no-pb">
 	<div class="container-fluid px-0">
-		<div class="row d-flex no-gutters">
-			<div class="container ftco-animate makereservation p-4 p-md-5 pt-5 pt-md-0">
-				<div class="heading-section ftco-animate mb-5">
-
-					<h2 class="mb-4">Make ReservationM</h2>
-				</div>
-				<form method="post" id="review-form" enctype="multipart/form-data">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="name">Name</label>
-								<input type="text" name="name" id="name" class="form-control " placeholder="Your Name">
-								<span id="name-error" style="display: none; color: red">Enter valid name</span>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="email">Email</label>
-								<input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
-								<span id="email-error" style="display: none; color: red">Enter valid email</span>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="phone">Phone</label>
-								<input type="text" name="phone" class="form-control" placeholder="Your Phone" id="phone">
-								<span id="phone-error" style="display: none; color: red">Enter valid phone number</span>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="table_number">Table</label>
-								<div class="select-wrap one-third">
-									<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="table" class="form-control" id="table_number">
-										<option value="">Select table</option>
-										<?php
-										//   while ($table_number = mysqli_fetch_assoc($table_number_res)) {
-										//      echo '<option value="' . $table_number['table_number'] . '">' . $table_number['table_number'] . '</option>';
-										//   }
-										?>
-									</select>
-
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="time">Time</label>
-								<input type="time" name="time" class="form-control" id="time">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="date">Date</label>
-								<input type="date" name="date" class="form-control" id="date">
-							</div>
-						</div>
-
-						<div class="col-md-12 mt-3">
-							<div class="form-group">
-								<input type="submit" name="submit" value="Make a Reservation" class="btn btn-primary py-3 px-5">
-							</div>
-						</div>
-					</div>
-				</form>
-
+		<div class="row no-gutters">
+			<div class="col-md">
+				<a href="#" class="instagram img d-flex align-items-center justify-content-center" style="background-image: url(images/insta-1.jpg);">
+					<span class="ion-logo-instagram"></span>
+				</a>
 			</div>
-
+			<div class="col-md">
+				<a href="#" class="instagram img d-flex align-items-center justify-content-center" style="background-image: url(images/insta-2.jpg);">
+					<span class="ion-logo-instagram"></span>
+				</a>
+			</div>
+			<div class="col-md">
+				<a href="#" class="instagram img d-flex align-items-center justify-content-center" style="background-image: url(images/insta-3.jpg);">
+					<span class="ion-logo-instagram"></span>
+				</a>
+			</div>
+			<div class="col-md">
+				<a href="#" class="instagram img d-flex align-items-center justify-content-center" style="background-image: url(images/insta-4.jpg);">
+					<span class="ion-logo-instagram"></span>
+				</a>
+			</div>
+			<div class="col-md">
+				<a href="#" class="instagram img d-flex align-items-center justify-content-center" style="background-image: url(images/insta-5.jpg);">
+					<span class="ion-logo-instagram"></span>
+				</a>
+			</div>
 		</div>
 	</div>
 </section>
 
-<section class="ftco-section ftco-no-pt ftco-no-pb contact-section">
-	<div class="container">
-		<div class="row d-flex align-items-stretch no-gutters">
-			<div class="col-md-6 p-5 order-md-last">
-				<h2 class="h4 mb-5 font-weight-bold">Contact Us</h2>
-				<form action="#">
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Your Name">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Your Email">
-					</div>
-					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Subject">
-					</div>
-					<div class="form-group">
-						<textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-					</div>
-				</form>
-			</div>
-			<!-- <div class="col-md-6 d-flex align-items-stretch">
-				<div id="map"></div>
-			</div> -->
-		</div>
-	</div>
-	</div>
 
-	<section class="ftco-section ftco-no-pt ftco-no-pb">
-		<div class="container-fluid px-0">
-			<div class="row no-gutters">
-				<div class="col-md">
-					<a href="#" class="instagram img d-flex align-items-center justify-content-center" style="background-image: url(images/insta-1.jpg);">
-						<span class="ion-logo-instagram"></span>
-					</a>
-				</div>
-				<div class="col-md">
-					<a href="#" class="instagram img d-flex align-items-center justify-content-center" style="background-image: url(images/insta-2.jpg);">
-						<span class="ion-logo-instagram"></span>
-					</a>
-				</div>
-				<div class="col-md">
-					<a href="#" class="instagram img d-flex align-items-center justify-content-center" style="background-image: url(images/insta-3.jpg);">
-						<span class="ion-logo-instagram"></span>
-					</a>
-				</div>
-				<div class="col-md">
-					<a href="#" class="instagram img d-flex align-items-center justify-content-center" style="background-image: url(images/insta-4.jpg);">
-						<span class="ion-logo-instagram"></span>
-					</a>
-				</div>
-				<div class="col-md">
-					<a href="#" class="instagram img d-flex align-items-center justify-content-center" style="background-image: url(images/insta-5.jpg);">
-						<span class="ion-logo-instagram"></span>
-					</a>
-				</div>
-			</div>
-		</div>
-	</section>
+<?php
+include_once 'footer.php';
+?>
 
+<script>
+   $(document).ready(function() {
+      $('#review-form').on('submit', function(e) {
 
-	<?php
-	include_once 'footer.php';
-	?>
+         e.preventDefault(); // Prevent form submission for AJAX handling
+
+         var valid = true;
+
+         // Name validation
+         var name = $('#name').val();
+         if (name.trim() === '') {
+            $('#name-error').show();
+            valid = false;
+         } else {
+            $('#name-error').hide();
+         }
+
+         // Email validation
+         var email = $('#email').val();
+         var emailPattern = /^[^\s@]+@(gmail\.com|yahoo\.com)$/;
+         if (!emailPattern.test(email)) {
+            $('#email-error').show();
+            valid = false;
+         } else {
+            $('#email-error').hide();
+         }
+
+         // Review validation
+         var review = $('#review').val();
+         if (review.trim() === '') {
+            $('#review-error').show();
+            valid = false;
+         } else {
+            $('#review-error').hide();
+         }
+
+         // Image validation
+         var image = $('#image')[0].files[0];
+         if (image) {
+            var allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+            if (!allowedTypes.includes(image.type)) {
+               $('#image-error').show();
+               valid = false;
+            } else {
+               $('#image-error').hide();
+            }
+         }
+
+         // If validation fails, stop the AJAX request
+         if (!valid) {
+            return;
+         }
+
+         // Form data
+         var formData = new FormData(this); // Using 'this' to refer to the form
+
+         // Send AJAX request if form is valid
+         $.ajax({
+            url: 'review.php', // Replace with your PHP handler
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(response) {
+               console.log(response);
+               // Assuming response is JSON
+               try {
+                  const jsonResponse = JSON.parse(response);
+                  if (jsonResponse.status === 'success') {
+                     toastr.success(jsonResponse.message, 'Success');
+                     $('#review-form')[0].reset(); // Reset the form
+                  } else {
+                     toastr.error(jsonResponse.message, 'Error');
+                  }
+               } catch (error) {
+                  toastr.error('Invalid response from server.', 'Error');
+               }
+            },
+            error: function(xhr, status, error) {
+               toastr.error('An error occurred while submitting the review.', 'Error');
+            }
+         });
+      });
+   });
+</script>
