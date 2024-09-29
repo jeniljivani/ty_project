@@ -1,6 +1,13 @@
 <?php
 include 'db.php';
 
+
+$user_id = $_SESSION['user_id'];
+$user_select = "SELECT login.* , role.role from login join role on login.role_id=role.id WHERE login.id ='$user_id'";
+$user_res = mysqli_query($con, $user_select);
+$user_data = mysqli_fetch_assoc($user_res);
+
+
 if (isset($_GET['aid'])) {
   $s_update = "update slider set status=0 where id=" . $_GET['aid'];
   mysqli_query($con, $s_update);
@@ -102,9 +109,10 @@ include 'header.php';
                     <th>title</th>
                     <th>Image</th>
                     <th>Status</th>
-
+                    <?php if ($user_data['role'] == 'admin') { ?>
                     <th>Delete</th>
                     <th>Update</th>
+                    <?php } ?>
                   </tr>
                 </thead>
                 <tbody>
@@ -125,8 +133,10 @@ include 'header.php';
                         }
                         ?>
                       </td>
+                      <?php if ($user_data['role'] == 'admin') { ?>
                       <td><a href="view_slider.php?id=<?php echo @$data['id']; ?>">Delete</a> </td>
                       <td><a href="add_slider.php?id=<?php echo @$data['id']; ?>">Update</a> </td>
+                      <?php } ?>
 
 
                     </tr>

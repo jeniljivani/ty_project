@@ -1,20 +1,15 @@
 <?php
-include 'db.php';
+require_once 'db.php';
 
-if (isset($_GET['aid'])) {
-   $s_update = "update items_order set status=0 where id=" . $_GET['aid'];
-   mysqli_query($con, $s_update);
-   header('location:view_order.php');
-}
 if (isset($_GET['did'])) {
-   $s_update = "update items_order set status=1 where id=" . $_GET['did'];
+   $s_update = "UPDATE items_order SET status = 1, is_deleted = 1 WHERE id = " . $_GET['did'];
    mysqli_query($con, $s_update);
-   header('location:view_order.php');
+   header('location:order_bill.php');
 }
 
 if (isset($_GET['id'])) {
    $id = $_GET['id'];
-   $delete = "delete from `items_order` where `id`=" . $id ;
+   $delete = "delete from `items_order` where `id`=" . $id;
    $res = mysqli_query($con, $delete);
 }
 
@@ -29,10 +24,10 @@ $start = ($page - 1) * $limit;
 
 if (isset($_POST['search'])) {
    $search = trim($_POST['search']);
-   $sql_page = "select * from `items_order` where table_number like '%$search%' order by id desc  limit $start , $limit";
+   $sql_page = "select * from `items_order` where table_number like '%$search%' order by id desc , is_deleted desc  limit $start , $limit";
    $total_rec = "select * from `items_order` where table_number like '%$search%' ";
 } else {
-   $sql_page = "select * from `items_order` order by id desc limit $start , $limit";
+   $sql_page = "select * from `items_order` ORDER BY `items_order`.`is_deleted` ASC limit $start , $limit";
    $total_rec = "select * from `items_order`";
 }
 
@@ -51,12 +46,12 @@ include 'header.php';
       <div class="container-fluid">
          <div class="row mb-2">
             <div class="col-sm-6">
-               <h1>Order</h1>
+               <h1>Bill</h1>
             </div>
             <div class="col-sm-6">
                <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="Dashboard.php">Home</a></li>
-                  <li class="breadcrumb-item active">Order</li>
+                  <li class="breadcrumb-item active">bill</li>
                </ol>
             </div>
          </div>
@@ -70,7 +65,7 @@ include 'header.php';
             <div class="col-12">
                <div class="card">
                   <div class="card-header">
-                     <h3 class="card-title">View Order data</h3>
+                     <h3 class="card-title">View bill data</h3>
                   </div>
 
                   <div class=" ml-4 mt-2">
@@ -86,10 +81,10 @@ include 'header.php';
                         <thead>
                            <tr>
                               <th>Id</th>
-                              <th>Items List</th>
                               <th>Tbale Number</th>
                               <th>Amount</th>
                               <th>Count</th>
+                              <th>Status</th>
                               <th>Delete</th>
                               <th>Update</th>
                            </tr>
@@ -100,10 +95,19 @@ include 'header.php';
                            ?>
                               <tr>
                                  <td><?php echo @$data['id']; ?></td>
-                                 <td><?php echo @$data['item_list']; ?></td>
                                  <td><?php echo @$data['table_number']; ?></td>
                                  <td><?php echo @$data['amount']; ?></td>
                                  <td><?php echo @$data['count']; ?></td>
+                                 <?php
+                                 if (@$data['status'] == 1) { ?>
+                                    <td><a class="btn btn-success btn-sm" >Done</a></td>
+                                 <?php
+                                 } else {
+                                    ?>
+                                    <td><a class="btn btn-primary btn-sm" href="order_bill.php?did=<?php echo @$data['id']; ?>">Pending</a></td>
+                                 <?php }
+                                 ?>
+
                                  <td><a href="view_order.php?id=<?php echo @$data['id']; ?>">Delete</a> </td>
                                  <td><a href="add_order.php?id=<?php echo @$data['id']; ?>">Update</a> </td>
                               </tr>
@@ -114,20 +118,20 @@ include 'header.php';
                      </table>
                      <div class="mt-3">
                         <label>Pages </label>
-                        <a class="btn btn-primary btn-sm" href="view_slider.php?page=1">All</a>
+                        <a class="btn btn-primary btn-sm" href="order_bill.php?page=1">All</a>
                         <?php
                         if ($page > 1) {
-                           echo "<a href='view_slider.php?page=" . $page - 1 . "' class='btn btn-primary btn-sm' >pre</a>";
+                           echo "<a href='order_bill.php?page=" . $page - 1 . "' class='btn btn-primary btn-sm' >pre</a>";
                         }
                         for ($i = 1; $i <= $total_page; $i++) {
                         ?>
-                           <a class="btn btn-primary btn-sm" href="view_slider.php?page=<?php echo $i;
+                           <a class="btn btn-primary btn-sm" href="order_bill.php?page=<?php echo $i;
                                                                                           if (isset($_GET['search'])) { ?> &search=<?php echo $_GET['search'];
-                                                                                                                                 } ?>"><?php echo $i; ?></a>
+                                                                                                                                          } ?>"><?php echo $i; ?></a>
                         <?php
                         }
                         if ($page <= $total_page - 1) {
-                           echo "<a href='view_slider.php?page=" . $page + 1 . "' class='btn btn-primary btn-sm' >next</a>";
+                           echo "<a href='order_bill.php?page=" . $page + 1 . "' class='btn btn-primary btn-sm' >next</a>";
                         }
                         ?>
                      </div>
@@ -149,5 +153,6 @@ include 'header.php';
 <!-- /.content-wrapper -->
 
 <?php
-include 'footer.php';
+include_once 'footer.php';
+
 ?>

@@ -1,6 +1,11 @@
 <?php
 include 'db.php';
 
+$user_id = $_SESSION['user_id'];
+$select_user = "SELECT login.* , role.role from login join role on login.role_id=role.id WHERE login.id ='$user_id'";
+$user_res = mysqli_query($con, $select_user);
+$user_data = mysqli_fetch_assoc($user_res);
+
 $limit = 10;
 
 if (isset($_GET['page'])) {
@@ -76,47 +81,52 @@ include 'header.php';
    </style>
 
    <!-- Main content -->
-   <section class="content">
-      <div class="container-fluid">
-         <div class="row">
-            <!-- left column -->
-            <div class="col-md-6">
-               <!-- general form elements -->
-               <div class="card card-primary">
-                  <div class="card-header">
-                     <h3 class="card-title">Add about</h3>
+   <?php
+   if ($user_data['role'] == 'admin') {
+   ?>
+      <section class="content">
+         <div class="container-fluid">
+            <div class="row">
+               <!-- left column -->
+               <div class="col-md-6">
+                  <!-- general form elements -->
+                  <div class="card card-primary">
+                     <div class="card-header">
+                        <h3 class="card-title">Add about</h3>
+                     </div>
+                     <!-- /.card-header -->
+                     <!-- form start -->
+                     <form method="post" enctype="multipart/form-data" id="frm">
+
+                        <div class="card-body">
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">About title</label>
+                              <input type="text" name="title" value="<?php echo @$data['title']; ?>" class="form-control" id="about" placeholder="Enter title">
+                              <h6>enter your about</h6>
+                           </div>
+                           <h5 style="color: red;"><?php echo @$error; ?></h5>
+
+                           <div class="form-group">
+                              <label for="exampleInputEmail1">Description</label>
+                              <textarea name="description" class="form-control" id="description" placeholder="Enter description"><?php echo @$data['description']; ?></textarea>
+                              <h6>Enter about description</h6>
+                           </div>
+                           <h5 style="color: red;"><?php echo @$error; ?></h5>
+                        </div>
+                        <!-- /.card-body -->
+
+                        <div class="card-footer">
+                           <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                     </form>
                   </div>
-                  <!-- /.card-header -->
-                  <!-- form start -->
-                  <form method="post" enctype="multipart/form-data" id="frm">
-
-                     <div class="card-body">
-                        <div class="form-group">
-                           <label for="exampleInputEmail1">About title</label>
-                           <input type="text" name="title" value="<?php echo @$data['title']; ?>" class="form-control" id="about" placeholder="Enter title">
-                           <h6>enter your about</h6>
-                        </div>
-                        <h5 style="color: red;"><?php echo @$error; ?></h5>
-
-                        <div class="form-group">
-                           <label for="exampleInputEmail1">Description</label>
-                           <textarea name="description" class="form-control" id="description" placeholder="Enter description"><?php echo @$data['description']; ?></textarea>
-                           <h6>Enter about description</h6>
-                        </div>
-                        <h5 style="color: red;"><?php echo @$error; ?></h5>
-                     </div>
-                     <!-- /.card-body -->
-
-                     <div class="card-footer">
-                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-                     </div>
-                  </form>
                </div>
             </div>
-         </div>
-         <!-- /.row -->
-      </div><!-- /.container-fluid -->
-   </section>
+            <!-- /.row -->
+         </div><!-- /.container-fluid -->
+      </section>
+
+   <?php } ?>
 
    <section class="content">
       <div class="container-fluid">
@@ -162,39 +172,39 @@ include 'header.php';
                            ?>
                         </tbody>
                      </table>
-                     <div class="mt-3">
-                        <label>Pages </label>
-                        <a class="btn btn-primary btn-sm" href="add_about.php?page=1">All</a>
-                        <?php
-                        if ($page > 1) {
-                           echo "<a href='add_about.php?page=" . $page - 1 . "' class='btn btn-primary btn-sm' >pre</a>";
-                        }
-                        for ($i = 1; $i <= $total_page; $i++) {
-                        ?>
-                           <a class="btn btn-primary btn-sm" href="add_about.php?page=<?php echo $i;
-                                                                                       if (isset($_GET['search'])) { ?> &search=<?php echo $_GET['search'];
-                                                                                                                                          } ?>"><?php echo $i; ?></a>
-                        <?php
-                        }
-                        if ($page <= $total_page - 1) {
-                           echo "<a href='add_about.php?page=" . $page + 1 . "' class='btn btn-primary btn-sm' >next</a>";
-                        }
-                        ?>
-                     </div>
+                     <div class=" mt-3">
+                                       <label>Pages </label>
+                                       <a class="btn btn-primary btn-sm" href="add_about.php?page=1">All</a>
+                                       <?php
+                                       if ($page > 1) {
+                                          echo "<a href='add_about.php?page=" . $page - 1 . "' class='btn btn-primary btn-sm' >pre</a>";
+                                       }
+                                       for ($i = 1; $i <= $total_page; $i++) {
+                                       ?>
+                                          <a class="btn btn-primary btn-sm" href="add_about.php?page=<?php echo $i;
+                                                                                                      if (isset($_GET['search'])) { ?> &search=<?php echo $_GET['search'];
+                                                                                                                              } ?>"><?php echo $i; ?></a>
+                                       <?php
+                                       }
+                                       if ($page <= $total_page - 1) {
+                                          echo "<a href='add_about.php?page=" . $page + 1 . "' class='btn btn-primary btn-sm' >next</a>";
+                                       }
+                                       ?>
                   </div>
-                  <!-- /.card-body -->
                </div>
-               <!-- /.card -->
-
-               <!-- /.card -->
+               <!-- /.card-body -->
             </div>
-            <!-- /.col -->
+            <!-- /.card -->
+
+            <!-- /.card -->
          </div>
-         <!-- /.row -->
+         <!-- /.col -->
       </div>
-      <!-- /.container-fluid -->
-   </section>
-   <!-- /.content -->
+      <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+</section>
+<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 

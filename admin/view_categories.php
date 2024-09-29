@@ -3,6 +3,11 @@
 include 'db.php';
 
 
+$user_id = $_SESSION['user_id'];
+$user_select = "SELECT login.* , role.role from login join role on login.role_id=role.id WHERE login.id ='$user_id'";
+$user_res = mysqli_query($con, $user_select);
+$user_data = mysqli_fetch_assoc($user_res);
+
 if (isset($_GET['id'])) {
 
   $id = $_GET['id'];
@@ -78,8 +83,10 @@ include 'header.php';
                   <tr>
                     <th>Id</th>
                     <th>Category</th>
+                    <?php if ($user_data['role'] == 'admin') { ?>
                     <th>Delete</th>
                     <th>Update</th>
+                    <?php } ?>
                   </tr>
                 </thead>
                 <tbody id="and">
@@ -89,8 +96,10 @@ include 'header.php';
                     <tr>
                       <td><?php echo @$data['id']; ?></td>
                       <td><?php echo @$data['category']; ?></td>
+                      <?php if ($user_data['role'] == 'admin') { ?>
                       <td><a href="view_categories.php?id=<?php echo @$data['id']; ?>">Delete</a> </td>
                       <td><a href="add_categories.php?id=<?php echo @$data['id']; ?>">Update</a> </td>
+                      <?php } ?>
                     </tr>
                   <?php
                   }

@@ -6,9 +6,9 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $id = $_SESSION['user_id'];
-$select = "SELECT login.* , role.role from login join role on login.role_id=role.id WHERE login.id ='$id'";
-$res = mysqli_query($con, $select);
-$user_data = mysqli_fetch_assoc($res);
+$user_select = "SELECT login.* , role.role from login join role on login.role_id=role.id WHERE login.id ='$id'";
+$user_res = mysqli_query($con, $user_select);
+$user_data = mysqli_fetch_assoc($user_res);
 
 ?>
 
@@ -157,25 +157,33 @@ $user_data = mysqli_fetch_assoc($res);
                     <p>Dashboard v1</p>
                   </a>
                 </li>
-
-
               </ul>
             </li>
+
+
+
+            <!-- admin -->
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fas fa-user-shield"></i>
+                <i class="fas fa-user-shield pr-2"></i>
                 <p>
                   Admin
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="add_admin.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add admin</p>
-                  </a>
-                </li>
+                <?php
+                if ($user_data['role'] == 'admin') {
+                ?>
+                  <li class="nav-item">
+                    <a href="add_admin.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add admin</p>
+                    </a>
+                  </li>
+                <?php
+                }
+                ?>
                 <li class="nav-item">
                   <a href="view_admin.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -184,217 +192,275 @@ $user_data = mysqli_fetch_assoc($res);
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-sliders-h"></i>
-                <p>
-                  Slider
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="add_slider.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add slider</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="view_slider.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View slider</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-info-circle"></i>
-                <p>
-                  About
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="add_about.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add about</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-concierge-bell"></i>
-                <p>
-                  Services
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="add_services.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add Services</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="view_services.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Services</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-utensils"></i>
-                <p>
-                  Menu
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="add_menu.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add menu</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="view_menu.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View menu</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-table"></i>
-                <p>
-                  Table
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="add_table.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add table</p>
-                  </a>
-                </li>
-                <!-- <li class="nav-item">
+            <?php
+            if ($user_data['role'] == 'admin' || $user_data['role'] == 'manager') {
+            ?>
+              <!-- slider -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-images pr-2"></i>
+                  <p>
+                    Slider
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <?php
+                  if ($user_data['role'] == 'admin') {
+                  ?>
+                    <li class="nav-item">
+                      <a href="add_slider.php" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add slider</p>
+                      </a>
+                    </li>
+                  <?php
+                  }
+                  ?>
+                  <li class="nav-item">
+                    <a href="view_slider.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>View slider</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- about -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-info-circle pr-2"></i>
+                  <p>
+                    About
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="add_about.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add about</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- services -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-concierge-bell pr-2"></i>
+                  <p>
+                    Services
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <?php
+                  if ($user_data['role'] == 'admin') {
+                  ?>
+                    <li class="nav-item">
+                      <a href="add_services.php" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add Services</p>
+                      </a>
+                    </li>
+                  <?php
+                  }
+                  ?>
+                  <li class="nav-item">
+                    <a href="view_services.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>View Services</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- menu -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-utensils pr-2"></i>
+                  <p>
+                    Menu
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="add_menu.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add menu</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="view_menu.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>View menu</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- table -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-table pr-2"></i>
+                  <p>
+                    Table
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="add_table.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add table</p>
+                    </a>
+                  </li>
+                  <!-- <li class="nav-item">
                     <a href="view_categories.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>View categories</p>
                     </a>
                   </li> -->
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-shopping-cart"></i>
-                <p>
-                Reservation
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="table_reservation.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View reservation</p>
-                  </a>
-                </li>
-                <!-- <li class="nav-item">
-                  <a href="view_services.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View Services</p>
-                  </a>
-                </li> -->
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-tags"></i>
-                <p>
-                  Categories
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="add_categories.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add categories</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="view_categories.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View categories</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-user-tag "></i>
-                <p>
-                  Role
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="add_role.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add role</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="view_role.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View role</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="fas fa-comment-alt"></i>
-                <p>
-                  Review
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
+                </ul>
+              </li>
+              <!-- categories -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-tags pr-2"></i>
+                  <p>
+                    Categories
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <?php
+                  if ($user_data['role'] == 'admin') {
+                  ?>
+                    <li class="nav-item">
+                      <a href="add_categories.php" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add categories</p>
+                      </a>
+                    </li>
+                  <?php
+                  }
+                  ?>
+                  <li class="nav-item">
+                    <a href="view_categories.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>View categories</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- role -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-user-friends pr-2"></i>
+                  <p>
+                    Role
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <?php
+                  if ($user_data['role'] == 'admin') {
+                  ?>
+                    <li class="nav-item">
+                      <a href="add_role.php" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Add role</p>
+                      </a>
+                    </li>
+                  <?php
+                  }
+                  ?>
+                  <li class="nav-item">
+                    <a href="view_role.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>View role</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- reservation -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-calendar-alt pr-2"></i>
+                  <p>
+                    Reservation
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="table_reservation.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>View reservation</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- review -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-comment pr-2"></i>
+                  <p>
+                    Review
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
 
-                <li class="nav-item">
-                  <a href="view_review.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>View review</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
+                  <li class="nav-item">
+                    <a href="view_review.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>View review</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- bill -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-file-invoice pr-2"></i>
+                  <p>
+                    Bill
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="order_bill.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>View Bill</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            <?php
+            }
+            ?>
+            <!-- order -->
             <li class="nav-item">
               <a href="#" class="nav-link">
-                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-shopping-cart pr-2"></i>
                 <p>
                   Order
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="add_order.php" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Add order</p>
-                  </a>
-                </li>
+                <?php
+                if ($user_data['role'] == 'admin' || $user_data['role'] == 'manager' || $user_data['role'] == 'staff') {
+                ?>
+                  <li class="nav-item">
+                    <a href="add_order.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add order</p>
+                    </a>
+                  </li>
+                <?php
+                }
+                ?>
                 <li class="nav-item">
                   <a href="view_order.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
@@ -403,7 +469,7 @@ $user_data = mysqli_fetch_assoc($res);
                 </li>
               </ul>
             </li>
-            
+
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

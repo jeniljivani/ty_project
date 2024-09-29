@@ -146,7 +146,7 @@ include 'header.php';
                 ?>
                   <div class="form-group">
                     <label for="change_password">Change password </label>
-                    <a href="change_password.php" class="btn btn-primary">Change admin password</a>
+                    <a href="change_password.php" class="btn btn-primary">Change your password</a>
                   </div>
                 <?php
                 }
