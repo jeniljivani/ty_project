@@ -9,7 +9,7 @@ $table_number_select = "SELECT table_number FROM tables WHERE table_number NOT I
         (SELECT table_number FROM reservations WHERE reservation_date = '$date' )";
 $table_number_res = mysqli_query($con, $table_number_select);
 
-$manu_select = "select * from menu ";
+$manu_select = "SELECT menu.* , category.category FROM menu JOIN category ON menu.cat_id=category.id";
 $menu_res = mysqli_query($con, $manu_select);
 
 
@@ -49,10 +49,11 @@ include_once 'header.php';
                            <h3><?= $menu['title'] ?></h3>
                         </div>
                         <div class="one-forth">
-                           <span class="price">$<?= $menu['price'] ?></span>
+                           <span class="price">₹<?= $menu['price'] ?></span>
                         </div>
                      </div>
                      <p><?= $menu['description'] ?></p>
+                     <p class="text-secondary "><?= $menu['category'] ?></p>
                   </div>
                </div>
             </div>

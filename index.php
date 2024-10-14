@@ -22,6 +22,10 @@ $table_number_res = mysqli_query($con, $table_number_select);
 $manu_select = "select * from menu limit 9 ";
 $menu_res = mysqli_query($con, $manu_select);
 
+$chef_select = "SELECT login.* , role.role from login join role on login.role_id=role.id WHERE login.role_id =role.id AND role.role = 'chef'  limit 4";
+$chef_res = mysqli_query($con, $chef_select);
+
+
 include_once 'header.php';
 
 ?>
@@ -55,7 +59,7 @@ include_once 'header.php';
       <div class="row justify-content-center">
          <div class="col-sm-10 wrap-about ftco-animate text-center">
             <div class="heading-section mb-4 text-center">
-            <span class="subheading">About</span>
+               <span class="subheading">About</span>
                <h2 class="mb-4"><?= $about_data['title'] ?></h2>
             </div>
             <p><?= $about_data['description'] ?></p>
@@ -72,47 +76,47 @@ include_once 'header.php';
 
 
 <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_4.jpg);" data-stellar-background-ratio="0.5">
-	<!-- <section class="ftco-section ftco-counter img ftco-no-pt" id="section-counter"> -->
-	<div class="container">
-		<div class="row d-md-flex align-items-center justify-content-center">
-			<div class="col-lg-10">
-				<div class="row d-md-flex align-items-center">
-					<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-						<div class="block-18">
-							<div class="text">
-								<strong class="number" data-number="5">0</strong>
-								<span>Years of Experienced</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-						<div class="block-18">
-							<div class="text">
-								<strong class="number" data-number="12000">0</strong>
-								<span>Happy Customers</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-						<div class="block-18">
-							<div class="text">
-								<strong class="number" data-number="30">0</strong>
-								<span>Menus</span>
-							</div>
-						</div>
-					</div>
-					<div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
-						<div class="block-18">
-							<div class="text">
-								<strong class="number" data-number="15">0</strong>
-								<span>Staffs</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+   <!-- <section class="ftco-section ftco-counter img ftco-no-pt" id="section-counter"> -->
+   <div class="container">
+      <div class="row d-md-flex align-items-center justify-content-center">
+         <div class="col-lg-10">
+            <div class="row d-md-flex align-items-center">
+               <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                  <div class="block-18">
+                     <div class="text">
+                        <strong class="number" data-number="5">0</strong>
+                        <span>Years of Experienced</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                  <div class="block-18">
+                     <div class="text">
+                        <strong class="number" data-number="12000">0</strong>
+                        <span>Happy Customers</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                  <div class="block-18">
+                     <div class="text">
+                        <strong class="number" data-number="30">0</strong>
+                        <span>Menus</span>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                  <div class="block-18">
+                     <div class="text">
+                        <strong class="number" data-number="15">0</strong>
+                        <span>Staffs</span>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </section>
 
 
@@ -142,7 +146,7 @@ include_once 'header.php';
             </div>
 
          <?php } ?>
-        
+
       </div>
    </div>
 </section>
@@ -151,7 +155,7 @@ include_once 'header.php';
    <div class="container-fluid px-4">
       <div class="row justify-content-center mb-5 pb-2">
          <div class="col-md-7 text-center heading-section ftco-animate">
-         <span class="subheading">Specialties</span>
+            <span class="subheading">Specialties</span>
             <h2 class="mb-4">Our Menu</h2>
          </div>
       </div>
@@ -168,7 +172,7 @@ include_once 'header.php';
                            <h3><?= $menu['title'] ?></h3>
                         </div>
                         <div class="one-forth">
-                           <span class="price">$<?= $menu['price'] ?></span>
+                           <span class="price">₹<?= $menu['price'] ?></span>
                         </div>
                      </div>
                      <p><?= $menu['description'] ?></p>
@@ -176,7 +180,7 @@ include_once 'header.php';
                </div>
             </div>
          <?php } ?>
- 
+
       </div>
       <div class="col-md-12 mt-3 d-flex justify-content-center">
          <div class="form-group">
@@ -244,82 +248,28 @@ include_once 'header.php';
          </div>
       </div>
       <div class="row">
-         <div class="col-md-6 col-lg-3 ftco-animate">
-            <div class="staff">
-               <div class="img" style="background-image: url(images/chef-4.jpg);"></div>
-               <div class="text pt-4">
-                  <h3>John Smooth</h3>
-                  <span class="position mb-2">Restaurant Owner</span>
-                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                  <div class="faded">
-                     <!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-                     <ul class="ftco-social d-flex">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                     </ul>
+         <?php while ($chef = mysqli_fetch_assoc($chef_res)) { ?>
+            <div class="col-md-6 col-lg-3 ftco-animate">
+               <div class="staff">
+                  <div class="img" style="background-image: url(admin/image/admin/<?= $chef['image'] ?>);"></div>
+                  <div class="text pt-4">
+                     <h3><?= $chef['name'] ?></h3>
+                     <span class="position mb-2"><?= $chef['role'] ?></span>
+                     <p><?= $chef['email'] ?></p>
+                     <div class="faded">
+                        <!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
+                        <ul class="ftco-social d-flex">
+                           <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                           <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                           <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+                           <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        </ul>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
-         <div class="col-md-6 col-lg-3 ftco-animate">
-            <div class="staff">
-               <div class="img" style="background-image: url(images/chef-2.jpg);"></div>
-               <div class="text pt-4">
-                  <h3>Rebeca Welson</h3>
-                  <span class="position mb-2">Head Chef</span>
-                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                  <div class="faded">
-                     <!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-                     <ul class="ftco-social d-flex">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-6 col-lg-3 ftco-animate">
-            <div class="staff">
-               <div class="img" style="background-image: url(images/chef-3.jpg);"></div>
-               <div class="text pt-4">
-                  <h3>Kharl Branyt</h3>
-                  <span class="position mb-2">Chef</span>
-                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                  <div class="faded">
-                     <!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-                     <ul class="ftco-social d-flex">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-md-6 col-lg-3 ftco-animate">
-            <div class="staff">
-               <div class="img" style="background-image: url(images/chef-1.jpg);"></div>
-               <div class="text pt-4">
-                  <h3>Luke Simon</h3>
-                  <span class="position mb-2">Chef</span>
-                  <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-                  <div class="faded">
-                     <!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-                     <ul class="ftco-social d-flex">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
+         <?php } ?>
+
       </div>
    </div>
 </section>
@@ -462,7 +412,7 @@ include_once 'footer.php';
             data: formData,
             contentType: false,
             processData: false,
-            success: function(response) { 
+            success: function(response) {
                // Assuming response is JSON
                try {
                   const jsonResponse = JSON.parse(response);

@@ -12,6 +12,9 @@ $servic_res = mysqli_query($con, $servic_select);
 $review_select = "select * from review order by id desc limit 6";
 $review_res = mysqli_query($con, $review_select);
 
+$chef_select = "SELECT login.* , role.role from login join role on login.role_id=role.id WHERE login.role_id =role.id AND role.role = 'chef'  limit 4";
+$chef_res = mysqli_query($con, $chef_select);
+
 include_once 'header.php';
 ?>
 
@@ -28,23 +31,23 @@ include_once 'header.php';
 </section>
 
 <section class="ftco-section ftco-wrap-about ftco-no-pb">
-   <div class="container">
-      <div class="row justify-content-center">
-         <div class="col-sm-10 wrap-about ftco-animate text-center">
-            <div class="heading-section mb-4 text-center">
-            <span class="subheading">About</span>
-               <h2 class="mb-4"><?= $about_data['title'] ?></h2>
-            </div>
-            <p><?= $about_data['description'] ?></p>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-sm-10 wrap-about ftco-animate text-center">
+				<div class="heading-section mb-4 text-center">
+					<span class="subheading">About</span>
+					<h2 class="mb-4"><?= $about_data['title'] ?></h2>
+				</div>
+				<p><?= $about_data['description'] ?></p>
 
-            <div class="video justify-content-center">
-               <a href="https://vimeo.com/45830194" class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
-                  <span class="ion-ios-play"></span>
-               </a>
-            </div>
-         </div>
-      </div>
-   </div>
+				<div class="video justify-content-center">
+					<a href="https://vimeo.com/45830194" class="icon-video popup-vimeo d-flex justify-content-center align-items-center">
+						<span class="ion-ios-play"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 
@@ -93,33 +96,33 @@ include_once 'header.php';
 </section>
 
 <section class="ftco-section bg-light">
-   <div class="container">
-      <div class="row justify-content-center mb-5 pb-2">
-         <div class="col-md-7 text-center heading-section ftco-animate">
-			<span class="subheading">Services</span>
-            <h2 class="mb-4">Catering Services</h2>
-         </div>
-      </div>
-      <div class="row">
-         <?php
-         while ($servic = mysqli_fetch_assoc($servic_res)) {
-         ?>
+	<div class="container">
+		<div class="row justify-content-center mb-5 pb-2">
+			<div class="col-md-7 text-center heading-section ftco-animate">
+				<span class="subheading">Services</span>
+				<h2 class="mb-4">Catering Services</h2>
+			</div>
+		</div>
+		<div class="row">
+			<?php
+			while ($servic = mysqli_fetch_assoc($servic_res)) {
+			?>
 
-            <div class="col-md-4 d-flex align-self-stretch ftco-animate text-center">
-               <div class="media block-6 services d-block">
-                  <div class="icon d-flex justify-content-center align-items-center">
-                     <img style="width: 50%;" src="admin/image/services/<?= $servic['icon'] ?>" alt="">
-                  </div>
-                  <div class="media-body p-2 mt-3">
-                     <h3 class="heading"><?= $servic['title'] ?></h3>
-                     <p><?= $servic['description'] ?></p>
-                  </div>
-               </div>
-            </div>
+				<div class="col-md-4 d-flex align-self-stretch ftco-animate text-center">
+					<div class="media block-6 services d-block">
+						<div class="icon d-flex justify-content-center align-items-center">
+							<img style="width: 50%;" src="admin/image/services/<?= $servic['icon'] ?>" alt="">
+						</div>
+						<div class="media-body p-2 mt-3">
+							<h3 class="heading"><?= $servic['title'] ?></h3>
+							<p><?= $servic['description'] ?></p>
+						</div>
+					</div>
+				</div>
 
-         <?php } ?>    
-      </div>
-   </div>
+			<?php } ?>
+		</div>
+	</div>
 </section>
 
 
@@ -132,124 +135,70 @@ include_once 'header.php';
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="staff">
-					<div class="img" style="background-image: url(images/chef-4.jpg);"></div>
-					<div class="text pt-4">
-						<h3>John Smooth</h3>
-						<span class="position mb-2">Restaurant Owner</span>
-						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-						<div class="faded">
-							<!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-							<ul class="ftco-social d-flex">
-								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-							</ul>
+			<?php while ($chef = mysqli_fetch_assoc($chef_res)) { ?>
+				<div class="col-md-6 col-lg-3 ftco-animate">
+					<div class="staff">
+						<div class="img" style="background-image: url(admin/image/admin/<?= $chef['image'] ?>);"></div>
+						<div class="text pt-4">
+							<h3><?= $chef['name'] ?></h3>
+							<span class="position mb-2"><?= $chef['role'] ?></span>
+							<p><?= $chef['email'] ?></p>
+							<div class="faded">
+								<!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
+								<ul class="ftco-social d-flex">
+									<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+									<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+									<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+									<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="staff">
-					<div class="img" style="background-image: url(images/chef-2.jpg);"></div>
-					<div class="text pt-4">
-						<h3>Rebeca Welson</h3>
-						<span class="position mb-2">Head Chef</span>
-						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-						<div class="faded">
-							<!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-							<ul class="ftco-social d-flex">
-								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="staff">
-					<div class="img" style="background-image: url(images/chef-3.jpg);"></div>
-					<div class="text pt-4">
-						<h3>Kharl Branyt</h3>
-						<span class="position mb-2">Chef</span>
-						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-						<div class="faded">
-							<!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-							<ul class="ftco-social d-flex">
-								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-3 ftco-animate">
-				<div class="staff">
-					<div class="img" style="background-image: url(images/chef-1.jpg);"></div>
-					<div class="text pt-4">
-						<h3>Luke Simon</h3>
-						<span class="position mb-2">Chef</span>
-						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
-						<div class="faded">
-							<!-- <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> -->
-							<ul class="ftco-social d-flex">
-								<li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-								<li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+			<?php } ?>
+
 		</div>
 	</div>
 </section>
 
 <!-- <section class="ftco-section testimony-section" style="background-image: url(images/bg_5.jpg);" data-stellar-background-ratio="0.5"> -->
 <section class="ftco-section testimony-section img" style="background-image: url(images/bg_5.jpg);">
-   <div class="overlay"></div>
-   <div class="container">
-      <div class="row justify-content-center mb-5">
-         <div class="col-md-7 text-center heading-section ftco-animate">
-			<span class="subheading">Testimony</span>
-            <h2 class="mb-4">Happy Customer</h2>
-         </div>
-      </div>
-      <div class="row ftco-animate justify-content-center">
-         <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-               <?php
-               while ($review = mysqli_fetch_assoc($review_res)) {
-               ?>
-                  <div class="item">
-                     <div class="testimony-wrap text-center pb-5">
-                        <div class="user-img mb-4" style="background-image: url('admin/image/review/<?= $review['image']; ?>'); background-size:cover; background-position:center;">
-                           <span class="quote d-flex align-items-center justify-content-center">
-                              <i class="icon-quote-left"></i>
-                           </span>
-                        </div>
-                        <div class="text p-3">
-                           <p class="mb-4"><?= $review['review']; ?></p>
-                           <p class="name"><?= $review['name']; ?></p>
-                           <span class="position">Customer</span>
-                        </div>
-                     </div>
-                  </div>
-               <?php
-               }
-               ?>
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row justify-content-center mb-5">
+			<div class="col-md-7 text-center heading-section ftco-animate">
+				<span class="subheading">Testimony</span>
+				<h2 class="mb-4">Happy Customer</h2>
+			</div>
+		</div>
+		<div class="row ftco-animate justify-content-center">
+			<div class="col-md-12">
+				<div class="carousel-testimony owl-carousel ftco-owl">
+					<?php
+					while ($review = mysqli_fetch_assoc($review_res)) {
+					?>
+						<div class="item">
+							<div class="testimony-wrap text-center pb-5">
+								<div class="user-img mb-4" style="background-image: url('admin/image/review/<?= $review['image']; ?>'); background-size:cover; background-position:center;">
+									<span class="quote d-flex align-items-center justify-content-center">
+										<i class="icon-quote-left"></i>
+									</span>
+								</div>
+								<div class="text p-3">
+									<p class="mb-4"><?= $review['review']; ?></p>
+									<p class="name"><?= $review['name']; ?></p>
+									<span class="position">Customer</span>
+								</div>
+							</div>
+						</div>
+					<?php
+					}
+					?>
 
-            </div>
-         </div>
-      </div>
-   </div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 <section class="ftco-section ftco-no-pt ftco-no-pb">

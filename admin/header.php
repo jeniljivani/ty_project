@@ -158,10 +158,7 @@ $user_data = mysqli_fetch_assoc($user_res);
                   </a>
                 </li>
               </ul>
-            </li>
-
-
-
+            </li> 
             <!-- admin -->
             <li class="nav-item">
               <a href="#" class="nav-link">
@@ -408,12 +405,29 @@ $user_data = mysqli_fetch_assoc($user_res);
                     <i class="fas fa-angle-left right"></i>
                   </p>
                 </a>
-                <ul class="nav nav-treeview">
-
+                <ul class="nav nav-treeview"> 
                   <li class="nav-item">
                     <a href="view_review.php" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>View review</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <!-- contact -->
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                <i class="fas fa-envelope  pr-2"></i>
+                  <p>
+                    Contact
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview"> 
+                  <li class="nav-item">
+                    <a href="view_contact.php" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>View Contact</p>
                     </a>
                   </li>
                 </ul>

@@ -31,7 +31,7 @@
 	 
 	<link rel="icon" type="image/png" href="images/logo.png">
 
-	<link rel="stylesheet" href="css/toastr.min.css\">
+	<link rel="stylesheet" href="css/toastr.min.css">
 	
 
   </head>

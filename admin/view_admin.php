@@ -96,6 +96,7 @@ include 'header.php';
 
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Role</th>
                     <th>Image</th>
                     <?php if ($user_data['role'] == 'admin') { ?>
                       <th>Delete</th>
@@ -106,11 +107,13 @@ include 'header.php';
                 <tbody>
                   <?php
                   while ($data = mysqli_fetch_assoc($res_page)) {
+                  
                   ?>
                     <tr>
 
                       <td><?php echo @$data['name']; ?></td>
                       <td><?php echo @$data['email']; ?></td>
+                      <td><?php echo @$data['role']; ?></td>
                       <td><img src="image/admin/<?php echo @$data['image']; ?>" width="100px" height="50px"></td>
                       <?php if ($user_data['role'] == 'admin') { ?>
                         <td><a href="view_admin.php?id=<?php echo @$data['id']; ?>">Delete</a></td>
