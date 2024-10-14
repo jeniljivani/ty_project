@@ -87,8 +87,8 @@
 
                <div class=" ml-4 mt-2">
                 <form method="get">
-                  <label>Search titel :-</label>
-                  <input type="text" name="search" placeholder="search titel">
+                  <label>Search title :-</label>
+                  <input type="text" name="search" placeholder="search title">
                   <input type="submit"  name="submit" value="Search" class="btn btn-primary btn-sm">
                 </form>
               </div>
@@ -99,7 +99,7 @@
                   <tr>
                     <th>Id</th>
                     <th>Image</th>
-                    <th>Titel</th>
+                    <th>title</th>
                     <th>Description</th>
                     <th>price</th>
                     <th>Status</th>

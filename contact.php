@@ -197,8 +197,7 @@ include_once 'footer.php';
             data: formData,
             contentType: false,
             processData: false,
-            success: function(response) {
-               console.log(response);
+            success: function(response) { 
                // Assuming response is JSON
                try {
                   const jsonResponse = JSON.parse(response);

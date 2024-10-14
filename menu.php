@@ -182,8 +182,7 @@ include_once 'footer.php';
 						date: date,
 						time: time
 					},
-					success: function(response) {
-						console.log(response);
+					success: function(response) { 
 
 						$("#table_number").html(response); // Update the table options
 					}

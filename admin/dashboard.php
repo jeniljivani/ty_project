@@ -114,7 +114,7 @@ include_once 'header.php';
           <!-- small box -->
           <div class="small-box bg-secondary">
             <div class="inner">
-              <h3><?= $total_review_count?><span style="font-size: 30px" class="ml-2">₹</span></h3>
+              <h3><?= $total_review_count?><span style="font-size: 30px" class="ml-2"></span></h3>
 
               <p>Total Review</p>
             </div>

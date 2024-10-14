@@ -205,8 +205,7 @@ include 'footer.php';
                totalCount: totalCount,
                totalAmount: totalAmount
             },
-            success: function(response) {
-               console.log("Response: " + response);
+            success: function(response) { 
                var data = JSON.parse(response);
                var titles = data.selectedItems.map(function(item) {
                   return item.title;

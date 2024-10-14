@@ -15,7 +15,7 @@ $cat_res = mysqli_query($con, $cat_select);
 
 if (isset($_POST['submit'])) {
     $user_id = $_SESSION['user_id'];
-    $titel = $_POST['titel'];
+    $title = $_POST['title'];
     $description = $_POST['description'];
     $price = $_POST['price'];
     $cat_id = $_POST['cat_id'];
@@ -32,11 +32,11 @@ if (isset($_POST['submit'])) {
         move_uploaded_file($_FILES['image']['tmp_name'], $path);
     }
     if (isset($_GET['id'])) {
-        $update = "update `menu` set `titel`='$titel',`description`='$description',`image`='$imagename' , `price`='$price' , `cat_id`='$cat_id' where `id`=" . $_GET['id'];
+        $update = "update `menu` set `title`='$title',`description`='$description',`image`='$imagename' , `price`='$price' , `cat_id`='$cat_id' where `id`=" . $_GET['id'];
         mysqli_query($con, $update);
         header("location:view_menu.php");
     } else {
-        $insert = "insert into `menu`(`title`,`description`,`image`,`price`,`cat_id`)values('$titel','$description','$imagename','$price','$cat_id')";
+        $insert = "insert into `menu`(`title`,`description`,`image`,`price`,`cat_id`)values('$title','$description','$imagename','$price','$cat_id')";
         mysqli_query($con, $insert);
     }
 }
@@ -86,8 +86,8 @@ include 'header.php';
                         <form method="post" enctype="multipart/form-data" id="frm">
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Titel</label>
-                                    <input type="text" name="titel" value="<?php echo @$data['titel'] ?>" class="form-control" id="title" placeholder="Enter titel">
+                                    <label for="exampleInputEmail1">title</label>
+                                    <input type="text" name="title" value="<?php echo @$data['title'] ?>" class="form-control" id="title" placeholder="Enter title">
                                     <h6>enter your title</h6>
 
                                 </div>

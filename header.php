@@ -7,11 +7,10 @@
     <title>Appetizer | The best food's site</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Monoton&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Miss+Fajardose&amp;display=swap" rel="stylesheet">
-
+   
+	<link rel="stylesheet" href="css/css.css">
+	<link rel="stylesheet" href="css/latin.css">
+	<link rel="stylesheet" href="css/latin-ext.css"> 
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
     
@@ -32,7 +31,7 @@
 	 
 	<link rel="icon" type="image/png" href="images/logo.png">
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+	<link rel="stylesheet" href="css/toastr.min.css\">
 	
 
   </head>
@@ -63,7 +62,7 @@
 	      <a class="navbar-brand" href="index.php">Appetizer</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
-	      </button>
+	      </button
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto align-items-center">

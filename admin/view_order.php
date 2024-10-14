@@ -91,7 +91,7 @@ include 'header.php';
                               <th>Amount</th>
                               <th>Count</th>
                               <th>Delete</th>
-                              <th>Update</th>
+                             
                            </tr>
                         </thead>
                         <tbody>
@@ -105,7 +105,7 @@ include 'header.php';
                                  <td><?php echo @$data['amount']; ?></td>
                                  <td><?php echo @$data['count']; ?></td>
                                  <td><a href="view_order.php?id=<?php echo @$data['id']; ?>">Delete</a> </td>
-                                 <td><a href="add_order.php?id=<?php echo @$data['id']; ?>">Update</a> </td>
+                                 
                               </tr>
                            <?php
                            }
