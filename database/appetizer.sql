@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 14, 2024 at 09:33 PM
+-- Generation Time: Oct 15, 2024 at 11:00 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -97,6 +97,8 @@ CREATE TABLE `items_order` (
   `table_number` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   `count` int(11) NOT NULL,
+  `discount` int(11) NOT NULL,
+  `chef_status` text NOT NULL DEFAULT 'pending',
   `status` int(11) NOT NULL DEFAULT 0,
   `time_stamp` text NOT NULL DEFAULT current_timestamp(),
   `is_deleted` int(11) NOT NULL DEFAULT 0
@@ -106,25 +108,31 @@ CREATE TABLE `items_order` (
 -- Dumping data for table `items_order`
 --
 
-INSERT INTO `items_order` (`id`, `item_list`, `table_number`, `amount`, `count`, `status`, `time_stamp`, `is_deleted`) VALUES
-(1, 'Grilled Beef with potatoes,Khaman Dhokla,drink', 1, 499, 3, 1, '2024-09-30 00:18:54', 1),
-(2, 'brownies,drink', 11, 170, 2, 1, '2024-09-30 00:19:03', 1),
-(3, 'coco,waffles', 3, 290, 2, 1, '2024-09-30 00:19:08', 1),
-(4, 'Khaman Dhokla', 4, 120, 1, 1, '2024-09-30 00:19:17', 1),
-(5, 'Grilled Beef with,drink', 2, 445, 2, 1, '2024-09-30 00:19:44', 1),
-(6, 'Grilled Beef with,iadi with chatani,brownies', 6, 515, 3, 1, '2024-09-30 00:19:55', 1),
-(7, 'cake', 8, 100, 1, 1, '2024-09-30 00:20:06', 1),
-(8, 'panner tika masala,rajma chawal,cake', 5, 680, 3, 1, '2024-09-30 00:20:28', 1),
-(9, 'waffles', 7, 210, 1, 1, '2024-09-30 00:20:46', 1),
-(10, 'butterMilk,soda,mojito', 13, 150, 3, 1, '2024-09-30 00:21:11', 1),
-(11, 'icecream', 10, 110, 1, 1, '2024-09-30 00:21:21', 1),
-(12, 'Khaman Dhokla,iadi with chatani,tea and coffee', 12, 240, 3, 1, '2024-09-30 00:21:52', 1),
-(13, 'kabab,soda', 9, 120, 2, 1, '2024-09-30 00:22:13', 1),
-(14, 'Grilled Beef with', 13, 345, 1, 1, '2024-09-30 00:25:52', 1),
-(15, 'Khaman Dhokla', 12, 120, 1, 0, '2024-09-30 00:26:18', 0),
-(16, 'Grilled Beef with potatoes,Grilled Beef with', 4, 624, 2, 1, '2024-09-30 00:52:12', 1),
-(17, 'Grilled Beef with potatoes,Khaman Dhokla,iadi with chatani,dosa,tea and coffee', 1, 659, 5, 0, '2024-09-30 08:34:55', 0),
-(18, 'Grilled Beef with potatoes,Grilled Beef with,Khaman Dhokla', 3, 744, 3, 0, '2024-10-14 21:50:20', 0);
+INSERT INTO `items_order` (`id`, `item_list`, `table_number`, `amount`, `count`, `discount`, `chef_status`, `status`, `time_stamp`, `is_deleted`) VALUES
+(1, 'Grilled Beef with potatoes,Khaman Dhokla,drink', 1, 499, 3, 0, 'pending', 1, '2024-09-30 00:18:54', 1),
+(2, 'brownies,drink', 11, 170, 2, 0, 'pending', 1, '2024-09-30 00:19:03', 1),
+(3, 'coco,waffles', 3, 290, 2, 0, 'pending', 1, '2024-09-30 00:19:08', 1),
+(4, 'Khaman Dhokla', 4, 120, 1, 0, 'pending', 1, '2024-09-30 00:19:17', 1),
+(5, 'Grilled Beef with,drink', 2, 445, 2, 0, 'pending', 1, '2024-09-30 00:19:44', 1),
+(6, 'Grilled Beef with,iadi with chatani,brownies', 6, 515, 3, 0, 'pending', 1, '2024-09-30 00:19:55', 1),
+(7, 'cake', 8, 100, 1, 0, 'pending', 1, '2024-09-30 00:20:06', 1),
+(8, 'panner tika masala,rajma chawal,cake', 5, 680, 3, 0, 'pending', 1, '2024-09-30 00:20:28', 1),
+(9, 'waffles', 7, 210, 1, 0, 'pending', 1, '2024-09-30 00:20:46', 1),
+(10, 'butterMilk,soda,mojito', 13, 150, 3, 0, 'pending', 1, '2024-09-30 00:21:11', 1),
+(11, 'icecream', 10, 110, 1, 0, 'pending', 1, '2024-09-30 00:21:21', 1),
+(12, 'Khaman Dhokla,iadi with chatani,tea and coffee', 12, 240, 3, 0, 'pending', 1, '2024-09-30 00:21:52', 1),
+(13, 'kabab,soda', 9, 120, 2, 0, 'pending', 1, '2024-09-30 00:22:13', 1),
+(14, 'Grilled Beef with', 13, 345, 1, 0, 'pending', 1, '2024-09-30 00:25:52', 1),
+(15, 'Khaman Dhokla', 12, 120, 1, 0, 'pending', 0, '2024-09-30 00:26:18', 0),
+(16, 'Grilled Beef with potatoes,Grilled Beef with', 4, 624, 2, 0, 'pending', 1, '2024-09-30 00:52:12', 1),
+(17, 'Grilled Beef with potatoes,Khaman Dhokla,iadi with chatani,dosa,tea and coffee', 1, 659, 5, 0, 'pending', 0, '2024-09-30 08:34:55', 0),
+(18, 'Grilled Beef with potatoes,Grilled Beef with,Khaman Dhokla', 3, 744, 3, 0, 'done', 0, '2024-10-14 21:50:20', 0),
+(19, 'Grilled Beef with potatoes,Grilled Beef with,Khaman Dhokla', 5, 744, 0, 0, 'approve', 0, '2024-10-15 20:53:42', 0),
+(20, 'Grilled Beef with potatoes,Grilled Beef with,Khaman Dhokla', 5, 744, 0, 0, 'pending', 0, '2024-10-15 20:54:03', 0),
+(21, 'Grilled Beef with potatoes,Grilled Beef with,Khaman Dhokla', 5, 744, 0, 0, 'pending', 0, '2024-10-15 20:54:06', 0),
+(22, 'Grilled Beef with potatoes,Grilled Beef with,dosa,tea and coffee,panner tika masala', 7, 1011, 5, 53, 'pending', 0, '2024-10-15 20:54:35', 0),
+(23, 'Grilled Beef with,Khaman Dhokla,dosa,tea and coffee,kajukari,tandoori roti,soda,coco', 2, 986, 8, 52, 'pending', 0, '2024-10-15 20:58:48', 0),
+(24, 'Grilled Beef with potatoes,Grilled Beef with', 6, 624, 2, 0, 'pending', 0, '2024-10-15 22:12:53', 0);
 
 -- --------------------------------------------------------
 
@@ -457,7 +465,7 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT for table `items_order`
 --
 ALTER TABLE `items_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `login`
