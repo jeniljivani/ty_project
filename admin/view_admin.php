@@ -41,12 +41,22 @@ if (isset($_GET['page'])) {
 $start = ($page - 1) * $limit;
 
 if (isset($_GET['search'])) {
-  $search = $_GET['search'];
-  $sql_page = "SELECT login.* , role.role from login join role on login.role_id=role.id like '%$search%' limit $start , $limit";
-  $total_rec = "select * from `login` where name like '%$search%' ";
+  if ($user_data['role'] == 'admin') {
+    $search = $_GET['search'];
+    $sql_page = "SELECT login.* , role.role from login join role on login.role_id=role.id like '%$search%' limit $start , $limit";
+    $total_rec = "select * from `login` where name like '%$search%' ";
+  } else {
+    $sql_page = "SELECT login.* , role.role from login join role on login.role_id=role.id   where login.id = '$user_id'";
+    $total_rec = "select * from `login` where name like '%$search%' ";
+  }
 } else {
-  $sql_page = "SELECT login.* , role.role from login join role on login.role_id=role.id limit $start , $limit";
-  $total_rec = "select * from `login`";
+  if ($user_data['role'] == 'admin') {
+    $sql_page = "SELECT login.* , role.role from login join role on login.role_id=role.id limit $start , $limit";
+    $total_rec = "select * from `login`";
+  } else {
+    $sql_page = "SELECT login.* , role.role from login join role on login.role_id=role.id  where login.id = '$user_id'";
+    $total_rec = "select * from `login`";
+  }
 }
 
 $res = mysqli_query($con, $total_rec);
@@ -107,7 +117,7 @@ include 'header.php';
                 <tbody>
                   <?php
                   while ($data = mysqli_fetch_assoc($res_page)) {
-                  
+
                   ?>
                     <tr>
 

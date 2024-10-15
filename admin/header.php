@@ -40,6 +40,8 @@ $user_data = mysqli_fetch_assoc($user_res);
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+	<link rel="stylesheet" href="../css/toastr.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
