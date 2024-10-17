@@ -215,6 +215,9 @@ include_once 'footer.php';
 							toastr.success(response.message);
 							// Optionally, you can clear the form or perform other actions here
 							$('#review-form')[0].reset();
+							setTimeout(function() {
+								window.location.href = 'reservation.php';
+							}, 2000)
 						} else {
 							toastr.error(response.message);
 						}

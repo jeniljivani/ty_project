@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2024 at 11:00 PM
+-- Generation Time: Oct 17, 2024 at 04:50 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -258,10 +258,15 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id`, `name`, `email`, `phone`, `table_number`, `reservation_date`, `reservation_time`, `status`) VALUES
-(1, 'Rashad Francis', 'mynyho@gmail.com', 2147483647, 3, '2019-09-11', '11:48', 1),
+(1, 'Rashad Francis', 'mynyho@gmail.com', 2147483647, 3, '2019-09-11', '11:48', 0),
 (2, 'Pearl Finch', 'cypalodo@gmail.com', 85858585, 1, '2024-09-26', '12:28', 1),
 (3, 'Lavinia Bauer', 'hoboqoc@gmail.com', 2147483647, 1, '2024-09-29', '13:09', 1),
-(4, 'Fallon Baker', 'cito@gmail.com', 2147483647, 2, '2024-09-29', '07:22', 1);
+(4, 'Fallon Baker', 'cito@gmail.com', 2147483647, 2, '2024-09-29', '07:22', 1),
+(5, 'jenil', 'jenil@gmail.com', 2147483647, 1, '2024-10-17', '07:54', 1),
+(6, 'jenil', 'jenil@gmail.com', 2147483647, 2, '2024-10-17', '08:05', 1),
+(7, 'Ursula Hoover', 'kyzegy@gmail.com', 2147483647, 3, '2024-10-17', '10:36', 0),
+(8, 'jenil', 'jenil@gmail.com', 2147483647, 4, '2024-10-17', '08:11', 1),
+(9, 'Phoebe Rivera', 'niriti@gmail.com', 2147483647, 5, '2024-10-17', '17:14', 1);
 
 -- --------------------------------------------------------
 
@@ -489,7 +494,7 @@ ALTER TABLE `offer`
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `review`

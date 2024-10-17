@@ -1,6 +1,6 @@
 
 <footer class="main-footer">
-    <strong>Copyright &copy; 2024 <a href="https://adminlte.io">appetizer.io</a>.</strong>
+    <strong>Copyright &copy; 2024 <a href="../index.php">appetizer.io</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
     
